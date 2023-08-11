@@ -9,6 +9,7 @@ import {
 import SectionWrapper from "../components/SectionWeapper";
 import ArtistsGrid from "../components/ArtistsGrid";
 import TrackList from "../components/TrackList";
+import Loader from "../components/Loader";
 import PlaylistsGrid from "../components/PlaylistsGrid";
 
 import StyledHeader from "../styles/StyledHeader";
@@ -23,12 +24,15 @@ const Profile = () => {
     const fetchData = async () => {
       const userProfile = await getCurrentUserProfile();
       setProfile(userProfile.data);
+      console.log(userProfile.data);
 
       const userPlaylists = await getCurrentUserPlaylists();
       setPlaylists(userPlaylists.data);
+      console.log(userPlaylists.data);
 
       const userTopArtists = await getTopArtists();
       setTopArtists(userTopArtists.data);
+      console.log(userTopArtists.data);
 
       const userTopTracks = await getTopTracks();
       setTopTracks(userTopTracks.data);
@@ -43,10 +47,10 @@ const Profile = () => {
         <>
           <StyledHeader type="user">
             <div className="header__inner">
-              {profile.images.length && profile.images[0].url && (
+              {profile.images.length && profile.images[1].url && (
                 <img
                   className="header__img"
-                  src={profile.images[0].url}
+                  src={profile.images[1].url}
                   alt="Avatar"
                 />
               )}
@@ -68,7 +72,7 @@ const Profile = () => {
               </div>
             </div>
           </StyledHeader>
-          {topArtists && topTracks && playlists && (
+          {topArtists && topTracks && playlists ? (
             <main>
               <SectionWrapper
                 title="Top artists this month"
@@ -86,6 +90,8 @@ const Profile = () => {
                 <PlaylistsGrid playlists={playlists.items.slice(0, 10)} />
               </SectionWrapper>
             </main>
+          ) : (
+            <Loader />
           )}
         </>
       )}

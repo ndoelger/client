@@ -6,6 +6,7 @@ import { getPlaylistById } from "../spotify";
 import TrackList from "../components/TrackList";
 import SectionWrapper from "../components/SectionWeapper";
 import StyledHeader from "../styles/StyledHeader";
+import Loader from "../components/Loader";
 
 const Playlist = () => {
   const { id } = useParams();
@@ -52,7 +53,7 @@ const Playlist = () => {
 
   return (
     <>
-      {playlist && (
+      {playlist ? (
         <>
           <StyledHeader>
             <div className="header__inner">
@@ -88,7 +89,7 @@ const Playlist = () => {
             </SectionWrapper>
           </main>
         </>
-      )}
+      ): <Loader/>}
     </>
   );
 };

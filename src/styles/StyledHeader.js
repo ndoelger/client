@@ -40,13 +40,15 @@ const StyledHeader = styled.header`
   }
 
   img.header__img {
-    width: 20%;
-    max-width: 250px;
+    width: 30vw;
+    height: 30vw;
+    max-width: 260px;
     min-width: 120px;
+    max-height: 260px;
     margin-right: var(--spacing-lg);
     box-shadow: 0 4px 60px rgb(0 0 0 / 50%);
     background-color: var(--dark-grey);
-    border-radius: ${props => props.type === 'user' ? '50%' : '0'};
+    border-radius: ${props =>  props.type === 'user' ? '50%' : '0'};
 
     @media (min-width: 768px) {
       margin-right: var(--spacing-xl);

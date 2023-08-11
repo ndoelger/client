@@ -4,6 +4,7 @@ import { catchErrors } from "../utils";
 import { getCurrentUserPlaylists } from "../spotify";
 import SectionWrapper from "../components/SectionWeapper";
 import PlaylistsGrid from "../components/PlaylistsGrid";
+import Loader from "../components/Loader";
 
 export default function Playlists() {
   const [playlistsData, setPlaylistsData] = useState(null);
@@ -49,9 +50,7 @@ export default function Playlists() {
   return (
     <main>
       <SectionWrapper title="Playlists" breadcrumb="true">
-        {playlists && (
-          <PlaylistsGrid playlists={playlists} />
-        )}
+        {playlists ? <PlaylistsGrid playlists={playlists} /> : <Loader />}
       </SectionWrapper>
     </main>
   );
