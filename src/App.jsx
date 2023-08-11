@@ -11,7 +11,10 @@ import GlobalStyle from "./styles/GlobalStyles";
 import styled from "styled-components/macro";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
-import TopArtists from "./pages/TopArtists"
+import TopArtists from "./pages/TopArtists";
+import TopTracks from "./pages/TopTracks";
+import Playlists from "./pages/Playlists";
+import Playlist from "./pages/Playlist";
 
 const StyledLogoutButton = styled.button`
   position: absolute;
@@ -70,13 +73,13 @@ function App() {
                   <TopArtists />
                 </Route>
                 <Route path="/top-tracks">
-                  <h1>Top Tracks</h1>
+                  <TopTracks />
                 </Route>
                 <Route path="/playlists/:id">
-                  <h1>Playlist</h1>
+                  <Playlist />
                 </Route>
                 <Route path="/playlists">
-                  <h1>Playlists</h1>
+                  <Playlists />
                 </Route>
                 <Route path="/">
                   <Profile />
