@@ -30,20 +30,6 @@ export const logout = () => {
 };
 
 /**
- * Checks if the amount of time that has elapsed between the timestamp in localStorage
- * and now is greater than the expiration time of 3600 seconds (1 hour).
- * @returns {boolean} Whether or not the access token in localStorage has expired
- */
-const hasTokenExpired = () => {
-  const { accessToken, timestamp, expireTime } = LOCALSTORAGE_VALUES;
-  if (!accessToken || !timestamp) {
-    return false;
-  }
-  const millisecondsElapsed = Date.now() - Number(timestamp);
-  return millisecondsElapsed / 1000 > Number(expireTime);
-};
-
-/**
  * Use the refresh token in localStorage to hit the /refresh_token endpoint
  * in our Node app, then update values in localStorage with data from response.
  * @returns {void}
@@ -77,6 +63,20 @@ const refreshToken = async () => {
   } catch (e) {
     console.error(e);
   }
+};
+
+/**
+ * Checks if the amount of time that has elapsed between the timestamp in localStorage
+ * and now is greater than the expiration time of 3600 seconds (1 hour).
+ * @returns {boolean} Whether or not the access token in localStorage has expired
+ */
+const hasTokenExpired = () => {
+  const { accessToken, timestamp, expireTime } = LOCALSTORAGE_VALUES;
+  if (!accessToken || !timestamp) {
+    return false;
+  }
+  const millisecondsElapsed = Date.now() - Number(timestamp);
+  return millisecondsElapsed / 1000 > Number(expireTime);
 };
 
 /**
